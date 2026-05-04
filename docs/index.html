@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CodeGlade | Software Development Company</title>
+  <!-- Google Fonts & Font Awesome (external but essential for modern look) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e2a32;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* CSS variables – Glade inspired palette */
+    :root {
+      --primary: #0f6e4a;
+      --primary-dark: #0a553a;
+      --primary-light: #d9f0e8;
+      --secondary: #1b4d3e;
+      --accent: #f7b05e;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+      --border-radius: 1.25rem;
+      --border-radius-sm: 0.75rem;
+    }
+
+    /* Global utility */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: var(--gray-800);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #4b5563;
+      max-width: 680px;
+      margin: 0 auto 3rem auto;
+      font-size: 1.1rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      z-index: 100;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary) 0%, #2b8c6e 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .logo i {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-right: 0.2rem;
+      background: none;
+      background-clip: unset;
+      -webkit-background-clip: unset;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--gray-700);
+      transition: color 0.2s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #fbfefc 0%, #f0f7f3 100%);
+      padding: 4rem 0 5rem 0;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--gray-800);
+      margin-bottom: 1.5rem;
+    }
+    .hero-content h1 span {
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #4b5563;
+      max-width: 90%;
+      margin-bottom: 2rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+    .hero-image i {
+      font-size: 12rem;
+      color: var(--primary);
+      opacity: 0.8;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.05));
+    }
+
+    /* Cards grid */
+    .services-grid, .tech-grid, .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .service-card, .tech-card, .usp-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+
+    .service-card:hover, .tech-card:hover, .usp-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-light);
+    }
+
+    .service-icon, .tech-icon, .usp-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+    .service-card h3, .tech-card h3, .usp-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    .service-card p, .tech-card p, .usp-card p {
+      color: #4b5563;
+    }
+
+    .tech-stack {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    /* about / stats */
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .about-text {
+      flex: 1.5;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: #2d3e42;
+    }
+    .stats {
+      flex: 1;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .stat-item {
+      background: var(--gray-50);
+      padding: 1.2rem;
+      border-radius: var(--border-radius-sm);
+      text-align: center;
+      min-width: 120px;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: var(--gray-50);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+    }
+    .contact-info {
+      flex: 1;
+    }
+    .contact-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .contact-detail i {
+      width: 2rem;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+    .contact-form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 1rem;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(15, 110, 74, 0.1);
+    }
+    .contact-form button {
+      width: fit-content;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      font-weight: 600;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .contact-form button:hover {
+      background: var(--primary-dark);
+    }
+
+    footer {
+      background: var(--gray-800);
+      color: #cbd5e1;
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+    .social-icons a {
+      color: #cbd5e1;
+      font-size: 1.3rem;
+      transition: color 0.2s;
+    }
+    .social-icons a:hover {
+      color: white;
+    }
+
+    /* scroll margin for fixed header */
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-wrap: wrap;
+      }
+      .hamburger {
+        display: block;
+      }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-md);
+        border-radius: 0 0 1.5rem 1.5rem;
+        display: none;
+        z-index: 99;
+        border-top: 1px solid var(--gray-200);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .hero-content p {
+        max-width: 100%;
+      }
+      .hero-image i {
+        font-size: 8rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .nav-links {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="navbar">
+      <a href="#" class="logo"><i class="fas fa-code-branch"></i> CodeGlade</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#tech-arsenal">Our tech</a>
+        <a href="#why-us">Why us</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-leaf"></i> Where Ideas Blossom into Code</div>
+        <h1>We craft <span>scalable software</span> that grows with your vision</h1>
+        <p>CodeGlade is a modern software development company building intelligent, future-ready digital products — from AI-driven platforms to enterprise systems.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Let's talk</a>
+          <a href="#tech-arsenal" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Our tech</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <i class="fas fa-laptop-code"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About CodeGlade</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Founded with a passion for clean code and creative engineering, <strong>CodeGlade</strong> is a boutique software house that blends technical excellence with a human-centered approach. We partner with startups, scale-ups, and enterprises to turn complex requirements into elegant, robust software.</p>
+          <p>Our name reflects our philosophy: a <strong>glade</strong> is an open space in a forest — a place of clarity, light, and new ideas. We bring that same clarity to every project, fostering innovation without overcomplication.</p>
+          <p><i class="fas fa-check-circle" style="color: var(--primary);"></i> 50+ successful deliveries &nbsp;&nbsp; <i class="fas fa-check-circle" style="color: var(--primary);"></i> 4.9/5 client satisfaction</p>
+        </div>
+        <div class="stats">
+          <div class="stat-item"><div class="stat-number">6+</div><div>Years of trust</div></div>
+          <div class="stat-item"><div class="stat-number">120+</div><div>Projects shipped</div></div>
+          <div class="stat-item"><div class="stat-number">24/7</div><div>Support coverage</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" style="background-color: var(--gray-50);">
+    <div class="container">
+      <h2 class="section-title">What we deliver</h2>
+      <p class="section-subtitle">End-to-end development services tailored to your business needs — from concept to cloud.</p>
+      <div class="services-grid">
+        <div class="service-card"><i class="fas fa-globe service-icon"></i><h3>Web & Mobile Apps</h3><p>React, Vue, Angular, Flutter, React Native — performant, pixel-perfect cross-platform solutions.</p></div>
+        <div class="service-card"><i class="fas fa-cloud-upload-alt service-icon"></i><h3>Cloud & DevOps</h3><p>AWS, Azure, GCP, Kubernetes, CI/CD pipelines — scalable infrastructure and automation.</p></div>
+        <div class="service-card"><i class="fas fa-brain service-icon"></i><h3>AI & Data Analytics</h3><p>Machine learning models, LLM integration, predictive analytics and business intelligence.</p></div>
+        <div class="service-card"><i class="fas fa-shield-alt service-icon"></i><h3>Cybersecurity & QA</h3><p>Security auditing, penetration testing, and automated quality assurance for robust systems.</p></div>
+        <div class="service-card"><i class="fas fa-palette service-icon"></i><h3>UI/UX Strategy</h3><p>User-centered design, prototyping, and design systems that elevate digital experiences.</p></div>
+        <div class="service-card"><i class="fas fa-database service-icon"></i><h3>Legacy Modernization</h3><p>Migration from monolithic to microservices, cloud-native transformation and re-architecture.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Tech Arsenal Section -->
+  <section id="tech-arsenal">
+    <div class="container">
+      <h2 class="section-title">Our tech arsenal</h2>
+      <p class="section-subtitle">We wield modern, battle-tested technologies to build future-proof solutions.</p>
+      <div class="tech-grid">
+        <div class="tech-card"><i class="fab fa-react tech-icon"></i><h3>Frontend mastery</h3><p>React, Next.js, Vue, TypeScript — crafting reactive, high-performance UIs with stellar UX.</p><div class="tech-stack"><i class="fas fa-code"></i> Tailwind, Redux, Webpack</div></div>
+        <div class="tech-card"><i class="fas fa-server tech-icon"></i><h3>Robust backends</h3><p>Node.js, Python (Django/FastAPI), Go, .NET — scalable APIs and microservices architecture.</p><div class="tech-stack"><i class="fas fa-database"></i> PostgreSQL, MongoDB, Redis</div></div>
+        <div class="tech-card"><i class="fas fa-cloud tech-icon"></i><h3>Cloud-native stack</h3><p>AWS (ECS, Lambda, RDS), Azure, Kubernetes, Terraform — infrastructure as code with zero downtime.</p><div class="tech-stack"><i class="fas fa-chart-line"></i> Prometheus, Grafana, GitHub Actions</div></div>
+        <div class="tech-card"><i class="fas fa-microchip tech-icon"></i><h3>AI & Edge</h3><p>TensorFlow, PyTorch, LangChain, OpenAI APIs — intelligent automation and real-time insights.</p><div class="tech-stack"><i class="fas fa-brain"></i> LLM fine-tuning, computer vision</div></div>
+        <div class="tech-card"><i class="fab fa-android tech-icon"></i><h3>Mobile excellence</h3><p>Flutter, React Native, Swift/Kotlin — native-like cross-platform apps with smooth animations.</p><div class="tech-stack"><i class="fas fa-mobile-alt"></i> Firebase, App Center, Store deployment</div></div>
+        <div class="tech-card"><i class="fas fa-shield-virus tech-icon"></i><h3>Security-first tooling</h3><p>SonarQube, Snyk, OWASP compliance, zero-trust architecture, and regular pentesting.</p><div class="tech-stack"><i class="fas fa-lock"></i> SOC2 ready, GDPR compliant</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Sets Us Apart Section -->
+  <section id="why-us" style="background-color: var(--gray-50);">
+    <div class="container">
+      <h2 class="section-title">What sets us apart</h2>
+      <p class="section-subtitle">Beyond code — transparency, agility, and a relentless focus on your success.</p>
+      <div class="usp-grid">
+        <div class="usp-card"><i class="fas fa-rocket usp-icon"></i><h3>Agile & outcome-driven</h3><p>Iterative delivery with bi-weekly sprints, continuous feedback loops, and full visibility into progress.</p></div>
+        <div class="usp-card"><i class="fas fa-handshake usp-icon"></i><h3>Dedicated partnership</h3><p>We embed into your team or work autonomously — always aligned with your business metrics and long-term goals.</p></div>
+        <div class="usp-card"><i class="fas fa-chart-simple usp-icon"></i><h3>Transparent pricing</h3><p>No hidden costs. Flexible engagement models (fixed-price, time & materials, or dedicated teams).</p></div>
+        <div class="usp-card"><i class="fas fa-seedling usp-icon"></i><h3>Innovation first</h3><p>We allocate 20% of internal bandwidth to R&D — bringing you the latest in AI, cloud, and dev tooling.</p></div>
+        <div class="usp-card"><i class="fas fa-clock usp-icon"></i><h3>24/7 support & SLA</h3><p>Round-the-clock monitoring, emergency hotfixes, and 99.9% uptime commitment for production systems.</p></div>
+        <div class="usp-card"><i class="fas fa-globe usp-icon"></i><h3>Global talent, local touch</h3><p>Distributed engineering hubs with overlapping time zones, daily syncs, and cultural alignment.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Let's grow something together</h2>
+      <p class="section-subtitle">Have a project in mind? Reach out — we'd love to hear from you.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3><i class="fas fa-tree" style="color: var(--primary);"></i> CodeGlade HQ</h3>
+          <!-- <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>555 Example Drive, Suite 555, Example, EX 55555</span></div> -->
+          <div class="contact-detail"><i class="fas fa-envelope"></i> <span>contact@codeglade.io</span></div>
+          <!-- <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span>+1 (555) 555-5555</span></div> -->
+          <div class="social-icons" style="justify-content: flex-start; margin-top: 1.5rem;">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a target="_blank" href="https://github.com/codeglade"><i class="fab fa-github"></i></a>
+            <!-- <a href="#"><i class="fab fa-x-twitter"></i></a> -->
+            <!-- <a href="#"><i class="fab fa-instagram"></i></a> -->
+          </div>
+        </div>
+        <form class="contact-form" id="demoContactForm">
+          <input type="text" placeholder="Full name" required>
+          <input type="email" placeholder="Email address" required>
+          <textarea rows="4" placeholder="Tell us about your idea..."></textarea>
+          <button type="submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a target="_blank" href="https://github.com/codeglade"><i class="fab fa-github"></i></a>
+      <!-- <a href="#"><i class="fab fa-x-twitter"></i></a> -->
+    </div>
+    <p>© 2025-2026 CodeGlade — Crafting software with clarity & purpose.</p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    function closeMenu() {
+      if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+      }
+    }
+
+    function toggleMenu() {
+      navLinks.classList.toggle('active');
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', toggleMenu);
+    }
+
+    // Close menu when clicking on a nav link (for smooth UX)
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    navAnchors.forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          closeMenu();
+        }
+        // smooth scroll with proper offset
+        const targetId = anchor.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          e.preventDefault();
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Ensure on window resize >768 the menu is reset if open
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Handle contact form demo submission
+    const contactForm = document.getElementById('demoContactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const nameInput = contactForm.querySelector('input[type="text"]');
+        const emailInput = contactForm.querySelector('input[type="email"]');
+        if (nameInput.value.trim() === '' || emailInput.value.trim() === '') {
+          alert('Please fill in your name and email to get in touch! 🌱');
+        } else {
+          alert(`Thanks ${nameInput.value.trim()}! Your message has been sent to the CodeGlade team. We'll reply within 24 hours.`);
+          contactForm.reset();
+        }
+      });
+    }
+
+    // Optional: add smooth handling for all internal anchor links with offset due to fixed header already via css scroll-margin, but for any missing?
+    document.querySelectorAll('a[href^="#"]:not(.nav-links a)').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = this.getAttribute('href');
+        if (target === '#') return;
+        const targetEl = document.querySelector(target);
+        if (targetEl) {
+          e.preventDefault();
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
