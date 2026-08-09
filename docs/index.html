@@ -392,6 +392,25 @@
       color: white;
     }
 
+    /* Footer legal links – clean and minimal */
+    .footer-legal {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+    .footer-legal a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover {
+      color: white;
+    }
+    .footer-legal .separator {
+      margin: 0 0.6rem;
+      color: #4b5563;
+    }
+
     /* scroll margin for fixed header */
     section[id] {
       scroll-margin-top: 80px;
@@ -589,11 +608,16 @@
     <div class="social-icons">
       <a target="_blank" href="https://t.me/+16127466525"><i class="fab fa-telegram"></i></a>
       <a target="_blank" href="https://wa.me/16127466525"><i class="fab fa-whatsapp"></i></a>
-      <!-- <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
       <a target="_blank" href="https://github.com/codeglade"><i class="fab fa-github"></i></a>
-      <!-- <a href="#"><i class="fab fa-x-twitter"></i></a> -->
     </div>
     <p>© 2026 CodeGlade Software LLC — Crafting software with clarity & purpose.</p>
+
+    <!-- Clean, minimal legal links – matches the footer style exactly -->
+    <div class="footer-legal">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+    </div>
   </div>
 </footer>
 
